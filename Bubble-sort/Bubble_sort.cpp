@@ -17,6 +17,22 @@ void Bubble_sort(int a[], int n){
 		}
 	}
 }
+void improved_Bubble_sort(int a[], int n){
+	for(int i=0;i<n;i++){
+		int flag = 0;
+		for(int j=n-1;j>i;j--){
+			if(a[j-1]>a[j]){
+				int temp = a[j-1];
+				a[j-1] = a[j];
+				a[j] = temp;
+				flag = 1;
+			}
+		}
+		if(flag==0)
+			break;
+	}
+
+}
 /* 递归版冒泡排序  */
 void Bubble_sort_recursive(int a[], int p, int q){
 	if(p<q){
@@ -35,6 +51,7 @@ int main(){
 	int a[5] = {5, 4, 3, 2, 1};
 	Bubble_sort(a, 5);
 	Bubble_sort_recursive(a, 0, 4);
+	improved_Bubble_sort(a, 5);
 	for(int i=0;i<5;i++){
 		cout<<a[i]<<",";
 	}
