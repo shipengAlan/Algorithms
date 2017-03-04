@@ -17,12 +17,32 @@ int Partition(int a[], int p, int r){
 	return i+1;
 
 }
+int Partition2(int a[], int p, int r){
+	int x = a[p];
+	int i=p;
+	int j=r;
+	while(i<j){
+		while(j>i&&a[j]>=x)
+			j--;
+		while(i<j&&a[i]<=x)
+			i++;
+		if(i<j){
+			int temp = a[i];
+			a[i] = a[j];
+			a[j] = temp;
+		}
+	}
+	a[p] = a[i];
+	a[i] = x;
+	return i;
+}
 /* 快速排序，不稳定的内排序
  * 平均时间和最好的复杂度为O(nlogn)，最差时间复杂度为O(n^2)
  * 递归实现版
  */
 void Quick_sort(int a[], int p, int r){
 	if(p<r){
+		//int q = Partition2(a, p, r);
 		int q = Partition(a, p, r);
 		Quick_sort(a, p, q-1 );
 		Quick_sort(a, q+1, r);
@@ -57,9 +77,9 @@ int main(){
 	//int a[5] = {1, 2, 3, 4, 5};
 	//int a[5] = {5, 4, 3, 2, 1};
 	int a[8] = {8,3,2,4,6,4,6,7};
-	//Quick_sort(a, 0, 7);
-	Quick_sort2(a, 8);
-	for(int i=0;i<7;i++){
+	Quick_sort(a, 0, 7);
+	//Quick_sort2(a, 8);
+	for(int i=0;i<8;i++){
 		cout<<a[i]<<",";
 	}
 	cout<<endl;
